@@ -1,0 +1,25 @@
+Creating partition table
+
+CREATE OR REPLACE TABLE prefect-de-zoomcamp-376517.dezoomcamp.hw3_partitioned
+PARTITION BY
+  DATE(pickup_datetime) AS
+SELECT * FROM prefect-de-zoomcamp-376517.dezoomcamp.hw3_non_partitoned;
+
+
+Creating external table 
+
+CREATE OR REPLACE EXTERNAL TABLE `prefect-de-zoomcamp-376517.dezoomcamp.hw3`
+OPTIONS (
+  format = 'CSV',
+  uris = ["gs://bucket_prefect/hw-w3/Week3/fhv_tripdata_2019-*.csv.gz"]
+);
+
+
+
+CREATE OR REPLACE TABLE prefect-de-zoomcamp-376517.dezoomcamp.hw3_non_partitoned AS
+SELECT * FROM prefect-de-zoomcamp-376517.dezoomcamp.hw3;
+
+
+SELECT DISTINCT affiliated_base_number  FROM `prefect-de-zoomcamp-376517.dezoomcamp.hw3_non_partitoned` WHERE pickup_datetime BETWEEN '2019-03-01' AND '2019-03-31';
+-- FROM t1
+-- WHERE pickup_datetime BETWEEN '2019-03-01' AND '2019-03-31'
