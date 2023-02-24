@@ -1,0 +1,7 @@
+Q1. SELECT count(*) FROM `animated-surfer-338618.production.fact_trips`
+WHERE EXTRACT(YEAR FROM pickup_datetime) IN  (2019, 2020) 
+Q2. ...
+Q3. SELECT count(*) FROM `animated-surfer-338618.dbt_dev.stg_fhv_tripdata`
+where extract(year from pickup_datetime) in (2019)
+Q4. SELECT count(*) FROM `animated-surfer-338618.dbt_dev.fact_fhv_trips`
+where extract(year from pickup_datetime) in (2019)
